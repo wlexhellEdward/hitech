@@ -1,0 +1,47 @@
+:root {
+    --white: #fff;
+    --blue: #446cd3;
+    --black: 202020;
+    --hoverblue: #3e62bd;
+    --font-famity: 'Exo 2', sans-serif;
+}
+
+
+
+.Toastify__toast-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.Toastify__toast {
+    background-color: #fff;
+    box-shadow: 0px 2px 2px 2px rgba(56, 161, 242, 0.278);
+    color: black;
+}
+
+.Toastify__progress-bar--success {
+    background: rgb(80, 186, 68);
+    background: linear-gradient(288deg, rgba(80, 186, 68, 1) 0%, rgba(151, 255, 0, 1) 100%);
+}
+
+.Toastify__progress-bar--error {
+    background: rgb(186, 97, 68);
+    background: linear-gradient(288deg, rgba(186, 97, 68, 1) 0%, rgba(255, 0, 0, 1) 100%);
+}
+
+
+.Toastify__progress-bar--warning {
+    background: rgb(186, 177, 68);
+    background: linear-gradient(288deg, rgba(186, 177, 68, 1) 0%, rgba(241, 255, 0, 1) 100%);
+}
+
+
+.Toastify__close-button>svg {
+    border-radius: 8px;
+    padding: 4px;
+    margin-left: 20px;
+    box-shadow: 0px 2px 2px 2px rgba(56, 161, 242, 0.8) inset;
+
+}

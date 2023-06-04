@@ -1,0 +1,67 @@
+@import url(../../index.css);
+
+
+
+:root{
+    --white:#fff;
+    --blue:#446cd3;
+    --black:#202020;
+    --hoverblue:#3e62bd;
+    --font-famity: 'Exo 2', sans-serif; 
+}
+
+.slider{
+    display: flex;
+    align-items: center;
+    padding-top: 110px;
+    text-align: start;
+    padding-left: 75px;
+    padding-right: 75px;
+}
+
+.left-section-slider{
+    display: grid;
+}
+
+.tittle{
+    font-size: 48px;
+    color:var(--blue);
+    font-weight: 600;
+}
+
+.img-slider{
+    width: 400px;
+    
+    height: 500px;
+}
+
+.name-of-phone{
+    font-size: 86px;
+    font-weight: 600;
+}
+
+.description{
+    font-size:24px;
+    margin-top: 25px;
+}
+
+.button-more{
+    background-color: var(--blue);
+    width: max-content;
+    border-radius:12px;
+    padding: 20px 35px;
+    color:var(--white);
+    font-size: 18px;
+    margin-top: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+
+}
+
+.right-section-slider{
+    padding-left: 100px;
+    padding-top: 60px;
+}
+
+

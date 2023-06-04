@@ -1,0 +1,314 @@
+:root{
+    --white:#fff;
+    --blue:#446cd3;
+    --black:202020;
+    --hoverblue:#3e62bd;
+    --font-famity: 'Exo 2', sans-serif; 
+}
+body{
+    overflow-x: hidden;
+}
+@media screen and (max-width: 1440px) {
+    .contacts .container-map{
+        width: 90%;
+    }
+    .imagine-container{
+        flex-direction: column;
+    }
+    .description-container {
+        display: flex;
+        margin: 0!important;
+        align-items: center;
+        justify-content: center;
+    }
+    .mobile-product{
+        width: auto;
+    }
+    .product-card{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .swicth-container{
+        display: none!important;
+    }
+    .container-characteristic{
+        width: 100%!important;
+    }
+    .characteristic{
+        width: 100%!important;
+    }
+    .container-tittle-description{
+        margin-bottom: 10px;
+    }
+    .array-text{
+        text-align: end!important;
+    }
+    .hr-characteristic{
+        width: 200vw;
+    }
+    .right-section-big-image{
+        margin-bottom: 40px;
+    }
+    .border-description{
+        margin: 0!important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: start;
+    }
+    .left-section-image{
+        margin:0!important;
+        flex-direction: row!important;
+        justify-content: space-between;
+    }
+    .left-section-image .border-container{
+        width: 29%;
+    }
+    .contacts .description-contacts input{
+        width: 80%;
+    }
+    .description-contacts{
+        margin: 40px 0!important;
+        justify-content: center;
+        align-items: center;
+    }
+    .item-favorites{
+        width: 100%!important;
+    }
+    .container-confirm{
+        width: 100%;
+    }
+    .container-type{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .link-confirm-container{
+        display: flex;
+        justify-content: center;
+    }
+    .container-type-purchase{
+        display: flex;
+        align-items: center;
+        justify-content:center ;
+        flex-direction: column;
+    }
+    .container-type-purchase .checkbox{
+        margin: 10px 0
+    }
+    .container-type span{
+        margin: 10px 0;
+    }
+    .col-1-delivery-type{
+        margin: 10px 0;
+    }
+    .item-basket span{
+        margin:0 10px;
+    }
+    .collection-of-basket-item{
+        width: 100%!important;
+    }
+    .left-container-with-payments{
+        width: 100%!important;
+    }
+    .favorites{
+        align-items: center;
+    }
+    .img-item-basket img{
+        margin: 0!important;
+    }
+    table {
+      overflow-x: scroll;
+      overflow-y: hidden;
+    }
+    .flex-direction-mobile{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .container-items{
+        justify-content: center;
+    }
+    .section-catalog{
+        width: 100%;
+        margin: 100px 0px 0 0;
+    }
+    .sidebar-catalog-filters{
+        width: auto;
+    }
+    .up-section-catalog{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+    .total-product{
+        display: none;
+    }
+    .collection-advantages{
+        flex-direction: column;
+        flex-wrap: wrap;
+        row-gap: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .quantity-liked-item{
+        display: none;
+    }
+    .quantity-basket-item{
+        display: none;
+    }
+    
+    .container-user-info{
+        flex-direction: column;
+    }
+    .user-order{
+        width: 100%!important;
+    }
+    .container-form-user-info{
+        width: 100%!important;
+        margin: 10px 0px !important;
+    }
+    form input{
+        width: 90%!important;
+        margin: 20px 0px!important;
+    }
+    .container-type{
+        width: 100%!important;
+    }
+    .container-name-number{
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    .container-adress-index{
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    .container-type-and-data{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 1096px) {
+    .img-slider{
+        display: none;
+    }
+    .btn-more{
+        margin-bottom: 20px;
+    }
+    .name-shop{
+        display: none;
+    }
+    /* SEND-AND-PAYMENT */
+    .container-ques-descrip-image{
+        flex-direction: column;
+    }
+    
+    .discount-right-section{
+        display: flex;
+        flex-direction: column;
+    }
+    .discount-input{
+        width: 100%;
+    }
+    .name-shop-mobile{
+        font-size: 24px;
+        display: block;
+        font-weight: 600;
+    }
+
+    .pages-not-found-container p{
+        font-size: 96px!important;
+    }
+    /* TITTLE */
+    .display-block{
+        justify-content: center;
+    }
+
+    .container{
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center!important;
+    }
+    .bg-blue{
+        justify-content: center!important;
+    }
+
+    .collection-items{
+        justify-content: center;
+        text-align: start;
+    }
+    .button-more{
+        margin-bottom: 50px;
+    }
+
+    .container-discount{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 0 0 20px 0 ;
+    }
+
+    .discount-input{
+        border-radius:8px ;
+        margin: 20px 0;
+    }
+    .discount-subscribe{
+        margin-bottom: 20px;
+    }
+
+    /* HEADER */
+
+    header{
+        width: 100%;
+    }
+    .nav-menu{
+        display: none!important;
+    }
+    .right-section-header{
+        display: none!important;
+    }
+    .btn-nav-menu{
+        display: block!important;
+    }
+
+
+    /* MOBILE-MENU */
+ 
+
+    /* FOOTER */
+
+    .footer .container{
+        text-align: start;
+        row-gap: 20px;
+        align-items: start;
+    }
+
+    .width-one-tree{
+        flex-direction: column!important;
+        align-items: center;
+        width: 100%!important;
+    }
+    .width-one-tree input{
+        border-radius:8px;
+        margin-bottom: 20px;
+    }
+    .collection-advantages{
+        justify-content: center;
+    }
+    .down-section-footer{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 600px) {
+
+}

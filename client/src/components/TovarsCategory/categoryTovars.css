@@ -1,0 +1,64 @@
+
+:root{
+    --white:#fff;
+    --blue:#446cd3;
+    --black:202020;
+    --hoverblue:#3e62bd;
+    --font-famity: 'Exo 2', sans-serif; 
+}
+
+.tittle-category-tovars{
+    font-size: 36px;
+    color:var(--blue);
+    font-weight: 600;
+    padding-bottom: 30px;
+}
+
+
+table{
+    width: 100%;
+    border-spacing:30px ;
+    display: block;
+    background-color: #fff;
+}
+
+
+td{
+    padding: 20px 30px;
+    background-color: rgb(245,245,247);
+    border-radius: 16px;
+    transition: 0.35s linear;
+}
+
+
+td:hover{
+    transform: scale(1.025);
+    box-shadow: 0px 2px 2px 2px rgba(56, 161, 242, 0.2);
+}
+tr td p{
+    font-weight: 600;
+    font-size: 24px;
+    color:black;
+}
+
+.td-phone img{
+    min-width: 440px;
+    height: 330px;
+}
+
+.td-planshet img{
+    height: 330px;
+    min-width: 440px;
+}
+
+.td-heaphones img{
+    min-width:220px;
+}
+
+.td-smartLock img{
+    min-width: 220px;
+}
+.td-computer img{
+    min-width: 640px;
+    height: 330px;
+}

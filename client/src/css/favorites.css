@@ -1,0 +1,88 @@
+:root{
+    --white:#fff;
+    --blue:#446cd3;
+    --black:202020;
+    --hoverblue:#3e62bd;
+    --font-famity: 'Exo 2', sans-serif; 
+}
+
+.tittle-favorites{
+    font-size: 36px;
+    color:var(--blue);
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.favorites{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.btn-add-all-item{
+    cursor: pointer;
+    width: 250px;
+    height: 20px;
+    padding: 12px 16px;
+    color: var(--white);
+    background-color: var(--blue);
+    border-radius: 8px;
+    transition: 0.3s linear;
+    margin-bottom: 50px;
+}
+
+
+.quantity-and-price{
+    display: flex;
+    flex-direction: column;
+}
+.btn-add-all-item:hover{
+    transform: scale(1.015);
+}
+
+.collection-of-favorites-product{
+    display: flex;
+    flex-direction: column;
+}
+
+.favorites-item-with-button{
+    display: flex;
+    align-items: center;
+}
+
+.item-favorites .description{
+    display: flex;
+    margin: 0!important;
+    height: 60%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-favorites{
+    border-radius: 8px;
+    padding: 20px 12px;
+    height: 80px;  
+    width: 60%;
+    margin: 20px 0;
+    border: 1px solid rgba(156, 156, 156, 0.822);
+    display: flex;
+    background-color: rgb(245,245,247);
+    transition: 0.4s linear;
+}
+
+.btn-to-basket{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    width: 120px;
+    height: 20px;
+    padding: 12px 16px;
+    color: var(--white);
+    background-color: var(--blue);
+    border-radius: 8px;
+    transition: 0.3s linear;
+    margin-left: 30px;
+}
+
+.btn-to-basket:hover{
+    transform: scale(1.015);
+}

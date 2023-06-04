@@ -1,0 +1,102 @@
+
+
+:root{
+    --white:#fff;
+    --blue:#446cd3;
+    --black:202020;
+    --hoverblue:#3e62bd;
+    --font-famity: 'Exo 2', sans-serif; 
+}
+
+
+.container-contacts{
+    display: flex;
+    width: 100%;
+}
+.contacts-tittle{
+    font-size: 36px;
+    font-weight: 600;
+    color:var(--blue);
+    margin-bottom: 50px;
+}
+
+.contacts{
+    display: flex;
+    width: 100%;
+}
+
+.contacts .container-map{
+    width: 450px;
+    height: 500px;
+    padding: 50px;
+    background-color:rgb(234, 234, 236);;
+    border-radius: 8px;
+    border: 2px solid gray;
+}
+
+.container-map-in{
+    border: 2px solid var(--blue);
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px 10px #446cd37f;
+    background-image: url("../../public/img/map.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contacts .description-contacts{
+    display: flex;
+    margin-left: 150px;
+    text-align:start;
+    flex-direction: column;
+}
+
+.contacts .description-contacts ul{
+    margin: 0px 20px ;
+}
+
+.contacts .description-contacts span{
+    color:black;
+    margin: 10px 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+.contacts .description-contacts li{
+    font-size: 14px;
+    margin: 10px 0;
+    color:gray;
+}
+
+.contacts .description-contacts input{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border: none;
+    margin-top: 20px;
+    background-color: rgb(234, 234, 236);
+    border-radius: 8px;
+}
+
+.contacts-name-input{
+    width: 400px;
+}
+
+.contacts-review-input{
+    width: 500px;
+    height: 200px;
+    text-align:center!important;
+}
+
+.send-review{
+    border-radius: 8px;
+    margin: 20px 0;
+    width: 140px;
+    height: 45px;
+    color:var(--white);
+    background-color: var(--blue);
+    padding: 8px 12px;
+    border: none;
+}

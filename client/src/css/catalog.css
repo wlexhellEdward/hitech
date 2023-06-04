@@ -1,0 +1,17 @@
+:root{
+    --white:#fff;
+    --blue:#446cd3;
+    --black:202020;
+    --hoverblue:#3e62bd;
+    --font-famity: 'Exo 2', sans-serif; 
+}
+
+
+h1{
+    color:var(--blue);
+    font-size: 36px;
+    font-weight: 600;
+    padding:80px;
+}
+
+

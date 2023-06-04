@@ -1,0 +1,8 @@
+.zoomed-fragment {
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.zoomable-image {
+    position: relative;
+}

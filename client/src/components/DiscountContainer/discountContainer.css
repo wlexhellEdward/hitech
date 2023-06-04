@@ -1,0 +1,52 @@
+:root{
+    --white:#fff;
+    --blue:#446cd3;
+    --black:#202020;
+    --hoverblue:#3e62bd;
+    --font-famity: 'Exo 2', sans-serif; 
+}
+
+
+.bg-blue{
+    background-color: var(--blue);
+    color:var(--white);
+    justify-content: space-between;
+}
+
+.container-discount{
+    margin-right: 50px;
+}
+.container-discount .tittle-discount{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.container-discount .description-discount{
+    font-size: 16px;
+}
+
+
+
+
+.discount-input{
+    border: none;
+    padding: 12px;
+    width: 350px;
+    border-radius: 16px 0 0 16px;
+}
+
+
+.discount-subscribe{
+    background-color: black;
+    color:white;
+    border-radius: 16px;
+    cursor: pointer;
+    padding: 12px;
+    margin-left: -20px;
+}
+
+.discount-right-section p{
+    color:#d7d7d7a1;
+    font-size: 12px;
+    padding-left: 5px;
+}

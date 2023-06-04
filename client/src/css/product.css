@@ -1,0 +1,246 @@
+:root{
+    --white:#fff;
+    --blue:#446cd3;
+    --black:202020;
+    --hoverblue:#3e62bd;
+    --font-famity: 'Exo 2', sans-serif; 
+}
+
+.tittle-product{
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 50px;
+    color:var(--blue);
+}
+
+.product-container{
+    display: flex;
+    width: 100%;
+    flex-direction:column;
+}
+
+
+.product-card{
+    display: flex;
+    width: 100%;
+}
+
+
+.imagine-container{
+    display: flex;
+}
+
+.border-container{
+    border: 2px solid var(--blue);
+    padding: 20px;
+    border-radius: 8px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    width: 180px;
+    transition: all .3s linear;
+    cursor: pointer;
+
+    margin-bottom: 12px;
+}
+
+.border-container:hover{
+    transform: scale(1.015);
+}
+
+.border-container img{
+    transition: all .5s linear;
+    height: 100%;
+}
+.left-section-image{
+    display: flex;
+    margin-right: 20px;
+    flex-direction: column;
+}
+
+.right-section-big-image{
+    height: 500px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    border-radius:8px ;
+    border:2px solid var(--blue);
+}
+
+.right-section-big-image img{
+    background-position: center;
+    width: 100%;
+    cursor:crosshair;
+
+    height: 100%;
+}
+
+.description-container{
+    display: flex;
+    margin-left: 50px;
+    padding: 0 20px;
+    flex-direction: column;
+}
+.border-description{
+    display: flex;
+    margin-left: 50px;
+    box-shadow: 5px 5px 20px 10px #446cd326;
+    border-radius: 8px;
+    padding: 20px 20px;
+    flex-direction: column;
+}
+
+.tittle-description{
+    font-size: 24px;
+    font-weight: 600;
+    color:black;
+}
+
+.container-rating{
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.container-rating span{
+    font-size: 14px;
+    color:gray;
+    margin-left: 10px;
+}
+
+.star-ico{
+    margin-right: 4px;
+    width: 24px;
+    height: 24px;
+}
+
+.price-product{
+    margin: 40px 0 100px 0;
+}
+
+.product-card b{
+    font-size: 18px;
+}
+
+
+
+
+.btn-to-basket-img-and-tittle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    color:var(--white);
+    transition: 0.3s linear;
+    padding: 8px 16px;
+    background-color: var(--blue);
+    border-radius:8px;
+}
+.container-btn{
+    margin-top: 20px;
+    display: flex;
+}
+.btn-to-basket-img-and-tittle img{
+    width: 32px;
+    height: 32px;
+    filter: invert(1);
+    margin-right: 20px;
+}
+.btn-to-basket-img-and-tittle:hover{
+    transform: scale(1.015);
+}
+.btn-to-favorite:hover{
+    transform: scale(1.015);
+}
+
+.btn-to-favorite{
+    width: 40px;
+    height: 40px;
+    transition: 0.3s linear;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    margin-left: 20px;
+    background-color:rgb(245,245,247) ;
+}
+
+
+
+.collection-choouses{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-top: 50px;
+}
+
+.choose-border{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    width: 600px;
+    height: 200px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    background-color: #446cd31f;
+}
+
+.choouse{
+    display: flex;
+    width: 100%;
+    border: 2px solid var(--blue);
+    height: 100%;
+    border-radius: 8px;
+    background-color: var(--white);
+}
+
+.column-image{
+    width: 30%;
+    display: flex;
+    padding: 12px 16px;
+    align-items: center;
+}
+
+.column-image img{
+    width: 100%;
+    height: 100%;
+}
+
+.column-titel-and-description{
+    width: 70%;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+
+.name-author{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.description-author{
+    color: gray;
+}
+
+.container-rating-review{
+    margin-top: 10px;
+    display: flex;
+    width: 30%;
+}
+.container-rating-review img{
+    width: 16px;
+    height: 16px;
+}
+
+.owl-theme{
+    display: flex;
+
+}

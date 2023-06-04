@@ -1,0 +1,49 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-famity);
+  font-size: 16px;
+}
+
+*::before,*::after{
+  box-sizing: border-box;
+}
+
+
+
+:root{
+  --white:#fff;
+  --blue:#446cd3;
+  --black:202020;
+  --font-famity: 'Gotham Pro', sans-serif;
+}
+
+.display-block{
+  display: block;
+}
+.name-shop-mobile{
+  display: none;
+}
+a{
+  text-decoration: none;
+  color: var(--white);
+}
+
+.container{
+  display: flex;
+  padding:50px 80px;
+  flex-wrap: wrap;
+}
+
+
+.btn-nav-menu{
+  display: none;
+}
+
+button{
+  cursor: pointer;
+}
+
+.tittle{
+  font-size: 36px;
+}
