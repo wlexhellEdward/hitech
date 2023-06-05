@@ -1,0 +1,21 @@
+{
+    "background.enabled": true,
+    "background.loop": false,
+    "background.useDefault": false,
+    "background.useFront": false,
+    "background.style": {
+        "content": "''",
+        "pointer-events": "none",
+        "position": "absolute",
+        "top": "0px",
+        "left": "0",
+        "right": "0",
+        "bottom": "0",
+        "z-index": "99999",
+        "opacity": 0.545,
+        "background-repeat": "no-repeat"
+    },
+    "background.customImages": [
+        "file:///C:/k.gif"
+    ]
+}
