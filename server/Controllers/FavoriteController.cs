@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 [ApiController]
 
+
 public class FavoriteController : ControllerBase
 {
     private readonly FavoriteService? _favoriteService;
@@ -21,12 +22,19 @@ public class FavoriteController : ControllerBase
     [Route("/api/favorite/get_favorite_product/{user_id}")]
     public IActionResult GetAll(int user_id)
     {
-        List<Favorite>? FavoriteItems = _favoriteService?.GetFavorite(user_id);
+        List<Product>? FavoriteItems = _favoriteService?.GetFavorite(user_id);
         return Ok(FavoriteItems);
     }
 
-
     [HttpGet]
+    [Route("/api/favorite/get_count/{user_id}")]
+    public IActionResult GetQuantity(int user_id){
+        int Quantity = _favoriteService.GetQuantityFavoriteItems(user_id);
+        return Ok(Quantity);
+    }
+
+
+    [HttpPost]
     [Route("/api/favorite/add_to_favorite/user_id={user_id}/product_id={product_id}")]
     public IActionResult AddToFavorite(int user_id,int product_id)
     {
@@ -35,6 +43,8 @@ public class FavoriteController : ControllerBase
         }
         return Ok("removed");
     }
+
+
     
 
 

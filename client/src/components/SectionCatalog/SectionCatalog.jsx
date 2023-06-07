@@ -3,18 +3,27 @@ import { Link, redirect, useNavigate, useParams } from "react-router-dom"
 import iphone from "../../../public/img/iphone.png"
 import like from "../../../public/img/like.svg"
 import Liked from "../../../public/img/Liked.png"
+import cart from "../../../public/img/cart.svg"
+import  CustomAlert  from "../../GUI/Alert/CustomAlert.jsx"
 import filtereingSidebar from "../FilteringSidebar/filtereingSidebar.css"
 
 import { useState, useEffect, useMemo } from "react";
 
 
+let responce = await fetch(`http://localhost:5252/api/products/get_all`)
+let data = await responce.json()
+
+
 const ArrayOfItem = [
-    { id: 1, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "phone", favorite: true, price: 12.25 },
-    { id: 2, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "smart-clock", favorite: false, price: 24.35 },
-    { id: 3, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "headphones", favorite: true, price: 21.35 },
-    { id: 4, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "phone", favorite: false, price: 13.35 },
-    { id: 5, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "phone", favorite: false, price: 30.35 },
+    ...data,
+    // { id: 1, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "phone", favorite: true, price: 12.25 },
+    // { id: 2, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "smart-clock", favorite: false, price: 24.35 },
+    // { id: 3, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "headphones", favorite: true, price: 21.35 },
+    // { id: 4, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "phone", favorite: false, price: 13.35 },
+    // { id: 5, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "phone", favorite: false, price: 30.35 },
 ]
+
+
 
 let min, max, count = 0
 
@@ -71,8 +80,6 @@ export default function SectionCatalog() {
             arrayOfOCategory.push(checkboxes.map(item => item.name))
         }
     }
-
-
 
     const [products, setProducts] = useState(ArrayOfItem);
     const [checkedItems, setCheckedItems] = useState(...arrayOfOCategory);
@@ -151,10 +158,11 @@ export default function SectionCatalog() {
 
 
     function handleToFavorite(selectedID) {
+        fetch(`http://localhost:5252/api/favorite/add_to_favorite/user_id=${1}/product_id=${selectedID}`, { method: "POST" })
         return (
             setProducts(
                 products.map(product => {
-                    if (product.id != selectedID) return product
+                    if (product.id != selectedID) { return product; }
                     return {
                         ...product, favorite: product.favorite ? product.favorite = false : product.favorite = true
                     }
@@ -163,6 +171,9 @@ export default function SectionCatalog() {
         )
     }
 
+    function handleToBasket(selectedID) {
+        fetch(`http://localhost:5252/api/basket/add_to_basket/user_id=${1}/product_id=${selectedID}`, { method: "POST" })
+    }
 
 
 
@@ -177,7 +188,7 @@ export default function SectionCatalog() {
                         <div className="container-current-price">
                             <span className="range-span">{currentValue} $</span>
                         </div>
-                        <input className="range-input" type="range" value={price} onChange={e => setPrice(e.target.value)} />
+                        <input className="range-input" type="range" value={price} onChange={e => setPrice(e.target.value)} min={0} max={max} />
                         <div className="from-to">
                             <span>От {min}</span>
                             <span>До {max}</span>
@@ -221,10 +232,11 @@ export default function SectionCatalog() {
                             id={product.id}
                             name={product.name}
                             price={product.price}
-                            photo={product.photo}
+                            photo={product.font}
                             url={"/product/" + product.id}
                             favorite={product.favorite}
                             onClickToFavorite={() => handleToFavorite(product.id)}
+                            onClickToBasket={() => handleToBasket(product.id)}
                         />
                     })}
                 </div>
@@ -257,7 +269,7 @@ function CheckBoxCreator({ name, labelName, handleCheckBox }) {
 
 }
 
-function Item({ id, name, price, url, photo, favorite, onClickToFavorite }) {
+function Item({ id, name, price, url, photo, favorite, onClickToFavorite, onClickToBasket }) {
     var image = { backgroundImage: "url(" + { photo } + ") !important" }
     var likeItem = favorite ? likeItem = Liked : likeItem = like
     return (
@@ -266,7 +278,7 @@ function Item({ id, name, price, url, photo, favorite, onClickToFavorite }) {
                 <div className="up-section-item" style={image}>
                     <div className="icon-item-catalog">
                         <img className="like" src={likeItem} onClick={onClickToFavorite} alt="" />
-                        <img className="to-cart" src={like} alt="" />
+                        <img className="to-cart" src={cart} onClick={onClickToBasket} alt="" />
                     </div>
                     <div className="image-container-item">
                         <img src={photo} alt="" />

@@ -7,13 +7,18 @@ import { useState } from "react";
 import CustomAlert from "../../GUI/Alert/CustomAlert";
 
 
+const user_id = 1;
+
+const ProductBasketResponce = await fetch(`http://localhost:5252/api/basket/get_basket_product/${user_id}`)
+const dataBasket = await ProductBasketResponce.json()
 
 const ArrayOfItem = [
-    { id: "1", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "2", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "3", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "4", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "5", name: "Apple AirPods Pro", price: 790, count: 1 }
+    ...dataBasket,
+    // { id: "1", name: "Apple AirPods Pro", price: 790, count: 1 },
+    // { id: "2", name: "Apple AirPods Pro", price: 790, count: 1 },
+    // { id: "3", name: "Apple AirPods Pro", price: 790, count: 1 },
+    // { id: "4", name: "Apple AirPods Pro", price: 790, count: 1 },
+    // { id: "5", name: "Apple AirPods Pro", price: 790, count: 1 }
 ]
 
 
@@ -22,7 +27,7 @@ CustomAlert("succes","Добро пожаловать!")
 export default function ProductsBasket() {
     const [products, setProducts] = useState(ArrayOfItem);
     const totalPrice = products.reduce((totalPrice, product) =>
-        totalPrice + product.price * product.count
+        totalPrice + product.price 
     , 0)
 
     
@@ -49,6 +54,7 @@ export default function ProductsBasket() {
     }
 
     function handleDeleteProduct(selectedID) {
+        fetch(`http://localhost/api/basket/add_to_basket/user=id=${1}/product_id=${selectedID}`)
         setProducts(
             products.filter(product => product.id != selectedID)
         )
@@ -93,7 +99,8 @@ export default function ProductsBasket() {
                             {products.map(product => {
                                 return <BasketItem
                                     key={product.id}
-                                    count={product.count}
+                                    image={product.font}
+                                    count={product.count-1}
                                     name={product.name}
                                     price={product.price}
                                     onClickDelete={() => handleDeleteProduct(product.id)}
@@ -118,12 +125,12 @@ export default function ProductsBasket() {
 }
 
 
-function BasketItem({ count, name, price, onClickMinus, onClickPlus, onClickDelete }) {
+function BasketItem({ image,count, name, price, onClickMinus, onClickPlus, onClickDelete }) {
     
     return (
         <div className="item-basket">
             <div className="img-item-basket">
-                <img src="../../../public/img/headphones.jpg" alt="" />
+                <img src={image} alt="" />
             </div>
             <div className="description">
                 <span className="tittle-item">{name}</span>

@@ -7,20 +7,36 @@ public class BasketService
         _dataContext = dataContext;
     }
 
-    public List<Basket>? GetBasket(int idUser)
+    public List<Product>? GetBasket(int idUser)
     {
-        
+
         List<Basket>? basketItems = _dataContext.Basket?.Where(
-            item=>item.user_id==idUser
-        ).ToList();
-        return basketItems;
+            item => item.user_id == idUser
+        ).ToList(); 
+
+        List<Product>? productBasket = new List<Product>();
+        basketItems.ForEach(
+            itemBasket =>
+            {
+                productBasket.Add(_dataContext.Product.FirstOrDefault(item => item.id == itemBasket.product_id));
+            }
+        );
+        return productBasket;
+    }
+
+    public int GetQuantityBasketItems(int idUser)
+    {
+        List<Basket>? basketItems = _dataContext.Basket?.Where(
+           item => item.user_id == idUser
+       ).ToList();
+        return basketItems.Count();
     }
 
 
-     public bool AddToBasket(int idUser, int idProduct)
+    public bool AddToBasket(int idUser, int idProduct)
     {
         Basket BasketToRemove = _dataContext.Basket.FirstOrDefault(f => f.user_id == idUser && f.product_id == idProduct);
-        if (BasketToRemove!=null)
+        if (BasketToRemove != null)
         {
             _dataContext.Basket.Remove(BasketToRemove);
             _dataContext.SaveChanges();

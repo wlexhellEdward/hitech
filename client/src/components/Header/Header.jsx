@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./header.css"
+
 
 import { Link } from 'react-router-dom'
 import CustomAlert from "../../GUI/Alert/CustomAlert"
@@ -8,20 +9,20 @@ import iphone from "../../../public/img/iphone.png"
 import like from '../../../public/img/like.svg'
 import cart from '../../../public/img/cart.svg'
 
-const ArrayOfItem = [
-  { id: 1, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, favorite: true, price: 24.35, url: "/" },
-  { id: 2, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, favorite: false, price: 24.35, url: "/" },
-  { id: 3, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, favorite: true, price: 24.35, url: "/" },
-  { id: 4, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, favorite: false, price: 24.35, url: "/" },
-  { id: 5, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, favorite: false, price: 24.35, url: "/" },
-]
 
 
+
+const quantityResponceFavorite = await fetch("http://localhost:5252/api/favorite/get_count/1")
+const quantityFavorite = await quantityResponceFavorite.json()
+
+
+
+const quantityResponceBasket = await fetch("http://localhost:5252/api/basket/get_count/1")
+const quantityBasket = await quantityResponceBasket.json()
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false)
   const [showCategory, setShowCategory] = useState(false)
-
 
   function handleSetShowMenu() {
     setShowMenu(!showMenu)
@@ -35,21 +36,22 @@ function Header() {
     <>
       <header>
         <div className="name-shop">
-          <Link  to="/">IPSHOP</Link>
+          <Link to="/">IPSHOP</Link>
         </div>
         <NavBar />
         <div className="right-section-header">
           <div className="search">
             <input type="text" placeholder="Поиск всех товаров" />
           </div>
+
           <div className="header-icons">
             <Link to="/favorites">
               <img className="like-ico" src={like} alt="" />
-              <span className="quantity-liked-item">{ArrayOfItem.length}</span>
+              <span className="quantity-liked-item">{quantityFavorite}</span>
             </Link>
             <Link to="/basket/ProductsBasket">
               <img className="cart-ico" src={cart} alt="" />
-              <span className="quantity-basket-item">{ArrayOfItem.length}</span>
+              <span className="quantity-basket-item">{quantityBasket}</span>
             </Link>
           </div>
         </div>
@@ -57,8 +59,8 @@ function Header() {
       </header>
       {showMenu &&
         <>
-          <div  data-aos="zoom-in-right" className="mobile-menu">
-          <Link to="/">IPSHOP</Link>
+          <div data-aos="zoom-in-right" className="mobile-menu">
+            <Link to="/">IPSHOP</Link>
 
             <div className="header-icons-mobile">
               <Link to="/favorites">

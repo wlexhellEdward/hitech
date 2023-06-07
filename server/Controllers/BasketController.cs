@@ -21,13 +21,13 @@ public class BasketController : ControllerBase
     [Route("/api/basket/get_basket_product/{user_id}")]
     public IActionResult GetAll(int user_id)
     {
-        List<Basket>? BasketItems = _basketService?.GetBasket(user_id);
+        List<Product>? BasketItems = _basketService?.GetBasket(user_id);
         return Ok(BasketItems);
     }
 
-    [HttpGet]
-    [Route("/api/favorite/add_to_basket/user_id={user_id}/product_id={product_id}")]
-    public IActionResult AddToFavorite(int user_id, int product_id)
+    [HttpPost]
+    [Route("/api/basket/add_to_basket/user_id={user_id}/product_id={product_id}")]
+    public IActionResult AddToBasket(int user_id, int product_id)
     {
         if (_basketService.AddToBasket(user_id, product_id))
         {
@@ -35,6 +35,14 @@ public class BasketController : ControllerBase
         }
         return Ok("removed");
     }
+    
+    [HttpGet]
+    [Route("/api/basket/get_count/{user_id}")]
+    public IActionResult GetQuantity(int user_id){
+        int Quantity = _basketService.GetQuantityBasketItems(user_id);
+        return Ok(Quantity);
+    }
+
 
 
 
