@@ -1,10 +1,17 @@
 import { useState } from "react"
 import hitsOfSell from './hitsOfSell.css'
-import phone from '../../../public/img/phone.svg'
+import phone from '../../../public/img/phoneFirst/font.png'
+import basket from '../../../public/img/cart.svg'
 import like from '../../../public/img/like.svg'
 import { Link } from "react-router-dom"
-function HitsOfSell() {
-  const [count, setCount] = useState(0)
+import Liked from "../../../public/img/Liked.png"
+
+
+
+
+
+
+function HitsOfSell({hitsProduct,handleToBasket,handleToFavorite}) {
   return (
     <>
       <div className="container bg-color-div">
@@ -12,27 +19,20 @@ function HitsOfSell() {
           <div data-aos="zoom-out-right" className="tittle-section-sell">
             ХИТЫ ПРОДАЖ
           </div>
-          <div className="collection-items">
-            <Item
-              dataName="fade-left"
-              id={1}
-              name={"Iphone Watch Nike SE, 44мм, корпус серебристого цвета"}
-              price={"23.45$"} />
-            <Item
-              dataName="fade-up"
-              id={2}
-              name={"Iphone Watch Nike SE, 44мм, корпус серебристого цвета"}
-              price={"23.45$"} />
-            <Item
-              dataName="fade-up"
-              id={3}
-              name={"Iphone Watch Nike SE, 44мм, корпус серебристого цвета"}
-              price={"23.45$"} />
-            <Item
-              dataName="fade-right"
-              id={4}
-              name={"Iphone Watch Nike SE, 44мм, корпус серебристого цвета"}
-              price={"23.45$"} />
+          <div className="collection-items  flex-direction-mobile">
+            {hitsProduct.map(product => {
+              return <Item
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                price={product.price}
+                photo={product.font}
+                url={"/product/" + product.id}
+                favorite={product.favorite}
+                onClickToFavorite={() => handleToFavorite(product.id)}
+                onClickToBasket={() => handleToBasket(product.id)}
+              />
+            })}
           </div>
         </div>
       </div>
@@ -41,28 +41,36 @@ function HitsOfSell() {
 }
 
 
-function Item({ id,name, price, dataName }) {
+function Item({ id, name, price, photo, url, favorite, onClickToFavorite, onClickToBasket }) {
+  var likeItem = favorite ? likeItem = Liked : likeItem = like
   return (
-    <Link to={`product/${id}`}>
-      <div className="item" data-aos={dataName}>
-        <div className="up-section">
-          <div className="icon-item">
-            <img className="like" src={like} alt="" />
-            <img className="to-cart" src={like} alt="" />
+    <>
+      <div data-aos="fade-down" className="item">
+        <div className="up-section-item" >
+          <div className="icon-item-catalog">
+            <img className="like" src={likeItem} onClick={onClickToFavorite} alt="" />
+            <img className="to-cart" src={basket} onClick={onClickToBasket} alt="" />
+          </div>
+          <div className="image-container-item">
+            <img src={photo} alt="" />
           </div>
         </div>
-        <hr />
-        <div className="item-description">
+        <hr className="catalog-hr" />
+        <div className="container-description">
           <p className="name-item">{name}</p>
-          <p className="price-item"><b>{price}</b></p>
-          <div className="btn-container">
-            <div className="btn-more">
-              Подробнее
+          <div className="container-btn-price">
+            <div className="item-description">
+              <p className="price-item"><b>{price} $</b></p>
             </div>
+            <Link className="btn-more-item" to={url}>
+              <div className="btn-more-catalog">
+                Подробнее
+              </div>
+            </Link>
           </div>
         </div>
       </div>
-    </Link>
+    </>
   )
 }
 

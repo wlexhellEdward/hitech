@@ -27,4 +27,7 @@ public class Product
     public bool? favorite { get; set; }
     [Column("price")]
     public double? price { get; set; }
+    [Column("basket")]
+    public bool? basket { get; set; }
+
 }

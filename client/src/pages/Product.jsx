@@ -1,46 +1,30 @@
 import DiscountContainer from "../components/DiscountContainer/DiscountContainer"
 import HitsOfSell from "../components/HitsOfSell/HitsOfSell"
 import { useParams } from "react-router-dom"
-
 import product from "../css/product.css"
-import iphone from "../../public/img/iphone.png"
 import star from "../../public/img/star.svg"
 import nostar from "../../public/img/nostar.svg"
 import basket from "../../public/img/cart.svg"
-import font from "../../public/img/phoneFirst/font.png"
-import back from "../../public/img/phoneFirst/back.png"
-import camera from "../../public/img/phoneFirst/camera.png"
-import left from "../../public/img/phoneFirst/left.png"
 import ZoomableImage from "../components/ZoomableImage/ZoomableImage"
-
 import like from "../../public/img/like.svg"
 import Characteristic from "../components/Characteristic/Characteristic.jsx"
 import { useState } from "react"
 
-const IPHONE = [
-    { id: 1, name: "IPHONE 13 MINI 256GB СИНИЙ", camera: camera, left: left, back: back, font: font, countReview: 12, rating: 2, price: 970.204, count: 3 },
-    { id: 2, name: "IPHONE 13 MINI 256GB СИНИЙ", camera: camera, left: left, back: back, font: font, countReview: 12, rating: 2, price: 970.204, count: 3 },
-    { id: 3, name: "IPHONE 13 MINI 256GB СИНИЙ", camera: camera, left: left, back: back, font: font, countReview: 12, rating: 2, price: 970.204, count: 3 },
-    { id: 4, name: "IPHONE 13 MINI 256GB СИНИЙ", camera: camera, left: left, back: back, font: font, countReview: 12, rating: 2, price: 970.204, count: 3 },
-    { id: 5, name: "IPHONE 13 MINI 256GB СИНИЙ", camera: camera, left: left, back: back, font: font, countReview: 12, rating: 2, price: 970.204, count: 3 }
-]
+
+const responceFetching = await fetch('http://localhost:5252/api/characteristic/get_all')
+const CharactaristicProducts = await responceFetching.json()
 
 
+export default function Product({hitsProduct,handleToBasket,handleToFavorite,allProduct}) {
 
-
-
-
-
-
-export default function Product() {
     const params = useParams()
+    const product = allProduct.filter(product => product.id == params.id)
 
-    const product = IPHONE.filter(product => product.id == params.id)
-
+    console.log(product)
 
     const ArrayImage = [
         { src: product[0].camera },
-        { src: product[0].left },
+        { src: product[0].leftImage },
         { src: product[0].back },
         { src: product[0].font },
     ]
@@ -114,8 +98,9 @@ export default function Product() {
             </div>
             <Characteristic
                 id={params}
+                CharactaristicProducts={CharactaristicProducts}
             />
-            <HitsOfSell />
+            <HitsOfSell hitsProduct={hitsProduct} handleToBasket={handleToBasket} handleToFavorite={handleToFavorite} />
             <DiscountContainer />
         </>
     )

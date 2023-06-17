@@ -4,10 +4,8 @@ using System.Web.Http.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EF_DataContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("MyConnection")));
@@ -19,7 +17,8 @@ app.UseCors(options=>{
     options.WithOrigins("http://localhost:5173","*","*").WithMethods("GET","POST").WithHeaders("Content-type","Authorization");
 });
 
-// Configure the HTTP request pipeline.
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

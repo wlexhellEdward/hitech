@@ -1,17 +1,9 @@
-import { Link, useNavigate  } from "react-router-dom"
-import { useState } from "react";
+ import {React,useState} from "react";
+ import {useNavigate,Link} from "react-router-dom"
 
-const ArrayOfItem = [
-    { id: "1", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "2", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "3", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "4", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "5", name: "Apple AirPods Pro", price: 790, count: 1 }
-]
 
-const totalPrice = 12590
 
-export default function MakingAnOrder() {
+export default function MakingAnOrder({productBasket}) {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nameAndSecondName: '',
@@ -48,9 +40,6 @@ export default function MakingAnOrder() {
             ...prevFormData,
             [name]: value,
         }));
-
-
-
         if (formData.nameAndSecondName != "") {
             setErrorArray((preventData) => ({
                 ...preventData,
@@ -116,7 +105,6 @@ export default function MakingAnOrder() {
         if(allSucces){
             navigate("/basket/Confirm")
         }
-        console.log(errorArray);
     };
 
     return (
@@ -152,16 +140,16 @@ export default function MakingAnOrder() {
                     <div data-aos="fade-up-right" className="user-order">
                         <span className="order-tittle">ВАШ ЗАКАЗ</span>
                         <div className="collection-of-order-item">
-                            {ArrayOfItem.map(product => {
+                            {productBasket.map(product => {
                                 return <BasketItem
                                     key={product.id}
+                                    photo={product.font}
                                     count={product.count}
                                     name={product.name}
                                     price={product.price}
                                 />
                             })}
                         </div>
-                        <span className="total-price-order">Сумма : <b>{totalPrice} $</b></span>
                     </div>
                     <div data-aos="fade-up-left" className="container-form-user-info">
                         <form action="" >
@@ -241,12 +229,12 @@ export default function MakingAnOrder() {
     )
 }
 
-function BasketItem({ count, name, price }) {
+function BasketItem({ count,photo, name, price }) {
 
     return (
         <div className="item-making-an-order">
             <div className="img-item-order">
-                <img src="../../../public/img/headphones.jpg" alt="" />
+                <img src={photo} alt="" />
             </div>
             <div className="description-order">
                 <span className="tittle-item">{name}</span>

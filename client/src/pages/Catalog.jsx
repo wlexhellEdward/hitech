@@ -2,7 +2,7 @@ import FilteringSidebar from "../../../client/src/components/FilteringSidebar/Fi
 import SectionCatalog from "../components/SectionCatalog/SectionCatalog.jsx"
 import catalog from "../css/catalog.css"
 
-export default function Catalog(){
+export default function Catalog({AllProducts,handleToBasket,handleToFavorite}){
     
     
     return (
@@ -12,7 +12,7 @@ export default function Catalog(){
             <div className="container flex-direction-mobile">
                 
                 <FilteringSidebar/>
-                <SectionCatalog/>
+                <SectionCatalog AllProducts={AllProducts} handleToBasket={handleToBasket} handleToFavorite={handleToFavorite}/>
 
             </div>
         </>

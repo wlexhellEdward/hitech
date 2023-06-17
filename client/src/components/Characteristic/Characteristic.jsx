@@ -6,6 +6,10 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import star from "../../../public/img/star.svg"
+import FirstReview from "../../../public/img/Review/1.jpg"
+import SecondReview from "../../../public/img/Review/2.webp"
+import ThirdReview from "../../../public/img/Review/3.jpg"
+
 import nostar from "../../../public/img/nostar.svg"
 
 const ALLCHARACTERISTIC = [
@@ -23,17 +27,13 @@ const ALLCHARACTERISTIC = [
 
 
 
-const CHARACTERISTICSPRODUCT = [
-    { id: 1, idProduct: 1, model: "Телефон", functionFastCharge: "15 минут до полной зарядки", features: "Нету", constructFeatures: "Влагозащита", weight: 15, width: 15.6, color: "Белый" },
-    { id: 2, idProduct: 2, model: "Телефон", functionFastCharge: "Отсутствует", features: "Нету", constructFeatures: "Влагозащита", weight: 24, width: 15.9, color: "Синий" },
-    { id: 3, idProduct: 3, model: "Наушники", functionFastCharge: "15 минут до полной зарядки", features: "Нету", constructFeatures: "Влагозащита", weight: 23, width: 16.1, color: "Белый" },
-    { id: 4, idProduct: 4, model: "Умные часы", functionFastCharge: "Отсутствует", features: "Нету", constructFeatures: "Влагозащита", weight: 21, width: 14.9, color: "Красный" },
-    { id: 5, idProduct: 5, model: "Телефон", functionFastCharge: "Отсутствует", features: "Нету", constructFeatures: "Влагозащита", weight: 20, width: 15.2, color: "Красный" },
-]
 
 
-export default function Characteristic({ id }) {
-    const CharactaristicProduct = CHARACTERISTICSPRODUCT.filter(product => product.idProduct == id.id)
+
+export default function Characteristic({ CharactaristicProducts,id }) {
+    const CharactaristicProduct = CharactaristicProducts.filter(product=>product.product_id==id.id)
+    console.log(CharactaristicProduct)
+
     const [activeIndex, setActiveIndex] = useState(0)
 
 
@@ -70,22 +70,22 @@ export default function Characteristic({ id }) {
                                     <OwlCarousel className='owl-theme'  items = "2" autoplay nav dots loop  margin={250}>
                                         
                                         <CreateChoose
-                                            image={iphone}
+                                            image={FirstReview}
                                             tittle={"Иванова Екатерина"}
-                                            description={"Заказала дочери на новый год планшет, оплатила на сайте, через 2 часа курьер уже привёз подарок. Цена очень низкая, товар пришёл в идеальном состоянии, спасибо!"}
+                                            description={"Заказала дочери на новый год, оплатила на сайте, через 2 часа курьер уже привёз подарок. Цена очень низкая, товар пришёл в идеальном состоянии, спасибо!"}
                                             star={5}
                                         />
                                         <CreateChoose
-                                            image={iphone}
+                                            image={SecondReview}
                                             tittle={"Иванова Кристина"}
-                                            description={"Заказала дочери на новый год планшет, оплатила на сайте, через 2 часа курьер уже привёз подарок. Цена очень низкая, товар пришёл в идеальном состоянии, спасибо!"}
+                                            description={"Купила для себя, полностью довольна качеством и скорость доставки"}
                                             star={5}
                                         />
                                         <CreateChoose
-                                            image={iphone}
+                                            image={ThirdReview}
                                             tittle={"Иванова Ольга"}
-                                            description={"Заказала дочери на новый год планшет, оплатила на сайте, через 2 часа курьер уже привёз подарок. Цена очень низкая, товар пришёл в идеальном состоянии, спасибо!"}
-                                            star={5}
+                                            description={"Ставлю 3 звезды, потомучто доставка заняла 2 недели, хотя обещали не больше недели и комплектация была без наклеек"}
+                                            star={3}
                                         />
                                     </OwlCarousel>;
 

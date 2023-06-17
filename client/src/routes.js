@@ -1,20 +1,15 @@
 import Basket from "./pages/BasketRoute";
 import Catalog from "./pages/Catalog";
 import Contacts from "./pages/Contacts";
-import Favorites from "./pages/Favorites";
-import Index from "./pages/Index";
-import Product from "./pages/Product";
 import SendAndPayments from "./pages/SendAndPayments";
-import { BASKET_ROUTE, MAIN_ROUTE, FILTERED_CATALOG, FAVORITES_ROUTE,  CATALOG, CONTACTS, SEND_AND_PAYMENTS, CATALOG_WITH_ITEM} from "./utils/const";
+import Authenficate from "./pages/Authenficate";
+import { BASKET_ROUTE, AUTHENFICATE,  CONTACTS, SEND_AND_PAYMENTS, CATALOG_WITH_ITEM} from "./utils/const";
 
 export const PublicRoute = [
+    
     {
-        path: MAIN_ROUTE,
-        Component: Index
-    },
-    {
-        path: CATALOG,
-        Component: Catalog
+        path:AUTHENFICATE,
+        Component: Authenficate,
     },
     {
         path: CONTACTS,
@@ -35,10 +30,6 @@ export const authRoutes = [
     {
         path: BASKET_ROUTE,
         Component: Basket
-    },
-    {
-        path:FAVORITES_ROUTE,
-        Component: Favorites
     }
 
 ]

@@ -9,62 +9,15 @@ import CustomAlert from "../../GUI/Alert/CustomAlert";
 
 const user_id = 1;
 
-const ProductBasketResponce = await fetch(`http://localhost:5252/api/basket/get_basket_product/${user_id}`)
-const dataBasket = await ProductBasketResponce.json()
+CustomAlert("succes", "Добро пожаловать!")
 
-const ArrayOfItem = [
-    ...dataBasket,
-    // { id: "1", name: "Apple AirPods Pro", price: 790, count: 1 },
-    // { id: "2", name: "Apple AirPods Pro", price: 790, count: 1 },
-    // { id: "3", name: "Apple AirPods Pro", price: 790, count: 1 },
-    // { id: "4", name: "Apple AirPods Pro", price: 790, count: 1 },
-    // { id: "5", name: "Apple AirPods Pro", price: 790, count: 1 }
-]
-
-
-CustomAlert("succes","Добро пожаловать!")
-
-export default function ProductsBasket() {
-    const [products, setProducts] = useState(ArrayOfItem);
-    const totalPrice = products.reduce((totalPrice, product) =>
-        totalPrice + product.price 
-    , 0)
-
-    
-    function handlePlusCountProduct(selectedID) {
-        setProducts(
-            products.map(product => {
-                if (product.id != selectedID || product.count > 20) return product
-                return {
-                    ...product, count: product.count + 1
-                }
-            })
-        )
-    }
-
-    function handleMinusCountProduct(selectedID) {
-        setProducts(
-            products.map(product => {
-                if (product.id != selectedID || product.count < 2) return product
-                return {
-                    ...product, count: product.count - 1
-                }
-            })
-        )
-    }
-
-    function handleDeleteProduct(selectedID) {
-        fetch(`http://localhost/api/basket/add_to_basket/user=id=${1}/product_id=${selectedID}`)
-        setProducts(
-            products.filter(product => product.id != selectedID)
-        )
-    }
+export default function ProductsBasket({ productsBasket, HandleMinusCountProduct, HandlePlusCountProduct, HandleDeleteProduct, totalPrice }) {
 
 
     return (
         <>
             <div className="container">
-                
+
                 <div data-aos="fade-down" className="basket">
                     <span className="basket-tittle">КОРЗИНА</span>
                     <div className="nav-basket">
@@ -93,25 +46,32 @@ export default function ProductsBasket() {
                         </div>
                     </div>
                     <span className="product-in-basket">ТОВАРЫ В КОРЗИНЕ</span>
-                    <div  className="main-section-basket flex-direction-mobile">
+                    <div className="main-section-basket flex-direction-mobile">
                         <div data-aos="fade-up-right" className="collection-of-basket-item">
-                            
-                            {products.map(product => {
-                                return <BasketItem
-                                    key={product.id}
-                                    image={product.font}
-                                    count={product.count-1}
-                                    name={product.name}
-                                    price={product.price}
-                                    onClickDelete={() => handleDeleteProduct(product.id)}
-                                    onClickMinus={() => handleMinusCountProduct(product.id)}
-                                    onClickPlus={() => handlePlusCountProduct(product.id)}
-                                />
-                            })}
 
+                            {
+                                productsBasket.length != 0 ?
+                                    productsBasket.map(product => {
+                                        return <BasketItem
+                                            key={product.id}
+                                            image={product.font}
+                                            count={product.count}
+                                            name={product.name}
+                                            price={product.price}
+                                            onClickDelete={() => HandleDeleteProduct(product.id)}
+                                            onClickMinus={() => HandleMinusCountProduct(product.id)}
+                                            onClickPlus={() => HandlePlusCountProduct(product.id)}
+                                        />
+                                    })
+                                    :
+                                    <div className="loader-container">
+                                        <h3 className="loader-tittle">У вас ещё нету товаров в корзине</h3>
+                                        <span class="loader"></span>
+                                    </div>
+                            }
                         </div>
                         <ContainerPayments
-                            count={products.length}
+                            count={productsBasket.length}
                             totalPrice={
                                 totalPrice
                             }
@@ -124,9 +84,8 @@ export default function ProductsBasket() {
     )
 }
 
+function BasketItem({ image, count, name, price, onClickMinus, onClickPlus, onClickDelete }) {
 
-function BasketItem({ image,count, name, price, onClickMinus, onClickPlus, onClickDelete }) {
-    
     return (
         <div className="item-basket">
             <div className="img-item-basket">

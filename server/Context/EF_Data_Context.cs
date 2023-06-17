@@ -11,6 +11,7 @@ public class EF_DataContext : DbContext
     public DbSet<Users>? Users {get;set;}  
     public DbSet<Basket>? Basket {get;set;}  
     public DbSet<Favorite>? Favorite {get;set;}  
+    public DbSet<Characteristic>? Characteristics {get;set;}  
 
 
 

@@ -4,24 +4,13 @@ import iphone from "../../../public/img/iphone.png"
 import like from "../../../public/img/like.svg"
 import Liked from "../../../public/img/Liked.png"
 import cart from "../../../public/img/cart.svg"
-import  CustomAlert  from "../../GUI/Alert/CustomAlert.jsx"
+import CustomAlert from "../../GUI/Alert/CustomAlert.jsx"
 import filtereingSidebar from "../FilteringSidebar/filtereingSidebar.css"
-
 import { useState, useEffect, useMemo } from "react";
 
 
-let responce = await fetch(`http://localhost:5252/api/products/get_all`)
-let data = await responce.json()
 
 
-const ArrayOfItem = [
-    ...data,
-    // { id: 1, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "phone", favorite: true, price: 12.25 },
-    // { id: 2, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "smart-clock", favorite: false, price: 24.35 },
-    // { id: 3, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "headphones", favorite: true, price: 21.35 },
-    // { id: 4, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "phone", favorite: false, price: 13.35 },
-    // { id: 5, name: "Iphone XR 14 PRO HD ULTRA", photo: iphone, type: "phone", favorite: false, price: 30.35 },
-]
 
 
 
@@ -64,7 +53,7 @@ const checkboxes = [
 
 
 
-export default function SectionCatalog() {
+export default function SectionCatalog({ AllProducts, handleToBasket, handleToFavorite }) {
 
     const params = useParams()
 
@@ -81,7 +70,6 @@ export default function SectionCatalog() {
         }
     }
 
-    const [products, setProducts] = useState(ArrayOfItem);
     const [checkedItems, setCheckedItems] = useState(...arrayOfOCategory);
     const [price, setPrice] = useState(0)
     const [currentValue, setCurrentValue] = useState(0)
@@ -114,32 +102,48 @@ export default function SectionCatalog() {
 
     const sortedProducts = useMemo(() => {
         if (sortProduct) {
-            return [...products].sort((a, b) => {
-                if (selectedSort === "low") {
-                    return a.price - b.price
-                }
-                else {
-                    return b.price - a.price
-                }
-            })
+            try {
+                return AllProducts.sort((a, b) => {
+                    if (selectedSort === "low") {
+                        return a.price - b.price
+                    }
+                    else {
+                        return b.price - a.price
+                    }
+                })
+            }
+            catch {
+                console.log("error")
+            }
         }
-        return products
-    }, [selectedSort, products])
+        return AllProducts
+    }, [selectedSort, AllProducts])
 
 
 
     const sortedAndCategorySortedProducts = useMemo(() => {
-        return sortedProducts.filter(product => checkedItems.includes(product.type))
+        try {
+            return sortedProducts.filter(product => checkedItems.includes(product.type))
+        }
+        catch {
+            return sortedProducts
+        }
     }, [checkedItems, sortedProducts])
 
     const sortedAndCategorySortedProductsAndPrice = useMemo(() => {
         const arrayPrice = []
-        sortedAndCategorySortedProducts.forEach(item => arrayPrice.push(item.price))
-        max = Math.max.apply(Math, arrayPrice)
-        min = Math.min.apply(Math, arrayPrice)
-        count = sortedAndCategorySortedProducts.filter(product => product.price > price).length
-        setCurrentValue(price)
-        return sortedAndCategorySortedProducts.filter(product => product.price > price)
+        try {
+            sortedAndCategorySortedProducts.forEach(item => arrayPrice.push(item.price))
+            max = Math.max.apply(Math, arrayPrice)
+            min = Math.min.apply(Math, arrayPrice)
+            count = sortedAndCategorySortedProducts.filter(product => product.price > price).length
+            setCurrentValue(price)
+            return sortedAndCategorySortedProducts.filter(product => product.price > price)
+        }
+        catch{
+            return sortedProducts
+        }
+        
     }, [price, sortedAndCategorySortedProducts])
 
 
@@ -157,23 +161,7 @@ export default function SectionCatalog() {
     }
 
 
-    function handleToFavorite(selectedID) {
-        fetch(`http://localhost:5252/api/favorite/add_to_favorite/user_id=${1}/product_id=${selectedID}`, { method: "POST" })
-        return (
-            setProducts(
-                products.map(product => {
-                    if (product.id != selectedID) { return product; }
-                    return {
-                        ...product, favorite: product.favorite ? product.favorite = false : product.favorite = true
-                    }
-                })
-            )
-        )
-    }
 
-    function handleToBasket(selectedID) {
-        fetch(`http://localhost:5252/api/basket/add_to_basket/user_id=${1}/product_id=${selectedID}`, { method: "POST" })
-    }
 
 
 
@@ -235,6 +223,7 @@ export default function SectionCatalog() {
                             photo={product.font}
                             url={"/product/" + product.id}
                             favorite={product.favorite}
+                            basket={product.basket}
                             onClickToFavorite={() => handleToFavorite(product.id)}
                             onClickToBasket={() => handleToBasket(product.id)}
                         />
@@ -269,16 +258,18 @@ function CheckBoxCreator({ name, labelName, handleCheckBox }) {
 
 }
 
-function Item({ id, name, price, url, photo, favorite, onClickToFavorite, onClickToBasket }) {
+function Item({ id, name, price, url, photo, basket, favorite, onClickToFavorite, onClickToBasket }) {
     var image = { backgroundImage: "url(" + { photo } + ") !important" }
     var likeItem = favorite ? likeItem = Liked : likeItem = like
+    var cartItem = basket ? cartItem = cart : cartItem = cart
+
     return (
         <>
             <div data-aos="fade-down" className="item">
                 <div className="up-section-item" style={image}>
                     <div className="icon-item-catalog">
                         <img className="like" src={likeItem} onClick={onClickToFavorite} alt="" />
-                        <img className="to-cart" src={cart} onClick={onClickToBasket} alt="" />
+                        <img className="to-cart" src={cartItem} onClick={onClickToBasket} alt="" />
                     </div>
                     <div className="image-container-item">
                         <img src={photo} alt="" />

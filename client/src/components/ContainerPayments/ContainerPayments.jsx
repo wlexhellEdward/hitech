@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 import { useState } from "react"
 import CustomAlert from "../../GUI/Alert/CustomAlert"
 
@@ -6,6 +6,8 @@ export default function ContainerPayments({ count, totalPrice }) {
 
     const [buttonIsActive, setButtonActive] = useState(true)
     const [promocode, setPromocode] = useState("")
+    const navigate = useNavigate();
+
 
     function ClickCuponButton() {
         switch (promocode) {
@@ -35,10 +37,10 @@ export default function ContainerPayments({ count, totalPrice }) {
         setButtonActive(!buttonIsActive)
     }
 
-    
-    var changedPrice = buttonIsActive?  changedPrice=totalPrice :  changedPrice= totalPrice-totalPrice*0.15
-        
-    
+
+    var changedPrice = buttonIsActive ? changedPrice = totalPrice : changedPrice = totalPrice - totalPrice * 0.15
+
+
 
     return (
         <div data-aos="fade-up-left" className="left-container-with-payments">
@@ -54,9 +56,9 @@ export default function ContainerPayments({ count, totalPrice }) {
             <div className="to-purchase">
                 <span className="to-purchase-span"><b>К оплате</b></span>
                 {buttonIsActive ?
-                    <span className="all-price"><b>{ changedPrice} $</b></span>
+                    <span className="all-price"><b>{changedPrice} $</b></span>
                     :
-                    <span className="all-price"><b>{ changedPrice} $</b></span>
+                    <span className="all-price"><b>{changedPrice} $</b></span>
 
                 }
             </div>
@@ -81,10 +83,16 @@ export default function ContainerPayments({ count, totalPrice }) {
 
 
             <div className="container-button">
-                <Link to="/basket/MakingAnOrder">
-                    <button>Оформить заказ</button>
-                </Link>
+                <button onClick={confirmOrder}>Оформить заказ</button>
             </div>
         </div>
     )
+    function confirmOrder(){
+        if(count<=0){
+            CustomAlert("error", "В вашей корзине нету товаров")
+        }
+        else{
+            navigate( "/basket/MakingAnOrder")
+        }
+    }
 }

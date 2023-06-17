@@ -12,17 +12,13 @@ import cart from '../../../public/img/cart.svg'
 
 
 
-const quantityResponceFavorite = await fetch("http://localhost:5252/api/favorite/get_count/1")
-const quantityFavorite = await quantityResponceFavorite.json()
 
 
 
-const quantityResponceBasket = await fetch("http://localhost:5252/api/basket/get_count/1")
-const quantityBasket = await quantityResponceBasket.json()
-
-function Header() {
+function Header({CountBasketItems,CountFavoriteItems,user_id}) {
   const [showMenu, setShowMenu] = useState(false)
   const [showCategory, setShowCategory] = useState(false)
+
 
   function handleSetShowMenu() {
     setShowMenu(!showMenu)
@@ -33,6 +29,7 @@ function Header() {
 
 
   return (
+
     <>
       <header>
         <div className="name-shop">
@@ -45,14 +42,19 @@ function Header() {
           </div>
 
           <div className="header-icons">
-            <Link to="/favorites">
-              <img className="like-ico" src={like} alt="" />
-              <span className="quantity-liked-item">{quantityFavorite}</span>
-            </Link>
-            <Link to="/basket/ProductsBasket">
-              <img className="cart-ico" src={cart} alt="" />
-              <span className="quantity-basket-item">{quantityBasket}</span>
-            </Link>
+
+            <>
+              <Link to={`/favorites/${user_id}`}>
+                <img className="like-ico" src={like} alt="" />
+                <span className="quantity-liked-item">{CountFavoriteItems}</span>
+              </Link>
+              <Link to="/basket/ProductsBasket">
+                <img className="cart-ico" src={cart} alt="" />
+                <span className="quantity-basket-item">{CountBasketItems}</span>
+              </Link>
+            </>
+
+
           </div>
         </div>
         <button className="btn-nav-menu" onClick={handleSetShowMenu}>=</button>

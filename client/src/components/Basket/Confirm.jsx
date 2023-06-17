@@ -1,17 +1,11 @@
 import { Link } from "react-router-dom"
 
-const ArrayOfItem = [
-    { id: "1", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "2", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "3", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "4", name: "Apple AirPods Pro", price: 790, count: 1 },
-    { id: "5", name: "Apple AirPods Pro", price: 790, count: 1 }
-]
-
-const totalPrice = 12590
 
 
-export default function Confirm() {
+
+
+
+export default function Confirm({ productBasket }) {
     return (
         <>
             <div data-aos="fade-up" className="container">
@@ -48,31 +42,34 @@ export default function Confirm() {
                 <div className="confirm">
                     <span className="order-tittle">ВАШ ЗАКАЗ</span>
                     <div className="confirm-collcetion">
-                        {ArrayOfItem.map(product => {
+                        {productBasket.map(product => {
                             return <BasketItem
                                 key={product.id}
                                 count={product.count}
                                 name={product.name}
+                                photo={product.font}
                                 price={product.price}
                             />
                         })}
                     </div>
                     <span className="total-price-order">С Вами свяжуться в течении 20 минут</span>
+
                     <div className="btn-cancel-order">
                         Отменить заказ
                     </div>
+
                 </div>
             </div>
         </>
     )
 }
 
-function BasketItem({ count, name, price }) {
+function BasketItem({ count, name,photo, price }) {
 
     return (
         <div className="item-making-an-order confirm-item">
             <div className="img-item-order">
-                <img src="../../../public/img/headphones.jpg" alt="" />
+                <img src={photo} alt="" />
             </div>
             <div className="description-order">
                 <span className="tittle-item">{name}</span>

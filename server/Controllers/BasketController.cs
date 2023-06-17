@@ -35,7 +35,18 @@ public class BasketController : ControllerBase
         }
         return Ok("removed");
     }
-    
+    [HttpPost]
+    [Route("/api/basket/add_to_basket/from_favorite/user_id={user_id}/product_id={product_id}")]
+    public IActionResult AddToBasketFromFavorite(int user_id, int product_id)
+    {
+        if (_basketService.AddToBasketFromFavorite(user_id, product_id))
+        {
+            return Ok("add");
+        }
+        return Ok("removed");
+    }
+
+
     [HttpGet]
     [Route("/api/basket/get_count/{user_id}")]
     public IActionResult GetQuantity(int user_id){
